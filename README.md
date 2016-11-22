@@ -18,6 +18,33 @@ Parser from NetCDF files to JSON usable for GCMS
 
 ```js
 const netcdfGcms = require('netcdf-gcms');
+const fs = require('fs');
+
+const data = fs.readFileSync('Agilent.cdf');
+
+// reads the data from the file
+const json = netcdfGcms(data);
+
+// or if you already know the format
+const agilentJson = netcdfGcms.fromAgilent(data);
+
+json === {
+  times: [/* ... */],
+  series: [{
+	name: 'tic',
+	dimension: 1,
+	data: [/* ... */]
+  }, {
+	name: 'ms',
+	dimension: 2,
+	data: [
+	  [
+	    [/* ... */],
+       	[/* ... */]
+      ]
+	]
+  }]
+}
 ```
 
 
