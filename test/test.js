@@ -5,6 +5,7 @@ const fs = require('fs');
 const pathFiles = __dirname + '/files/';
 
 describe('netcdf-gcms test', function () {
+    this.timeout(15000);
 
     it('Unknown file format', function () {
         const data = fs.readFileSync(pathFiles + 'madis-sao.nc');
