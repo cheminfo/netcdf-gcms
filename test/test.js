@@ -13,8 +13,9 @@ describe('netcdf-gcms test', function () {
     });
 
     describe('Agilent format', function () {
+        const data = fs.readFileSync(pathFiles + 'P071.CDF');
+
         it('Agilent file', function () {
-            const data = fs.readFileSync(pathFiles + 'P071.CDF');
             const json = netcdfGcms(data);
             json.times.length.should.be.equal(6401);
             for (let i = 0; i < json.series.length; i++) {
@@ -23,7 +24,6 @@ describe('netcdf-gcms test', function () {
         });
 
         it('fromAgilent', function () {
-            const data = fs.readFileSync(pathFiles + 'P071.CDF');
             const json = netcdfGcms.fromAgilent(data);
             json.times.length.should.be.equal(6401);
             for (let i = 0; i < json.series.length; i++) {
@@ -33,8 +33,9 @@ describe('netcdf-gcms test', function () {
     });
 
     describe('Finnigan format', function () {
+        const data = fs.readFileSync(pathFiles + 'SRN 00000225.cdf');
+
         it('Finnigan file', function () {
-            const data = fs.readFileSync(pathFiles + 'SRN 00000225.cdf');
             const json = netcdfGcms(data);
             json.times.length.should.be.equal(11832);
             for (let i = 0; i < json.series.length; i++) {
@@ -43,7 +44,6 @@ describe('netcdf-gcms test', function () {
         });
 
         it('fromFinnigan', function () {
-            const data = fs.readFileSync(pathFiles + 'SRN 00000225.cdf');
             const json = netcdfGcms.fromFinnigan(data);
             json.times.length.should.be.equal(11832);
             for (let i = 0; i < json.series.length; i++) {
