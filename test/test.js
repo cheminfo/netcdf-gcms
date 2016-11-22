@@ -15,7 +15,6 @@ describe('netcdf-gcms test', function () {
         it('Agilent file', function () {
             const data = fs.readFileSync(pathFiles + 'P071.CDF');
             const json = netcdfGcms(data);
-            //console.log(json);
             json.times.length.should.be.equal(6401);
             for (let i = 0; i < json.series.length; i++) {
                 json.series[i].data.length.should.be.equal(6401);
@@ -35,14 +34,20 @@ describe('netcdf-gcms test', function () {
     describe('Finnigan format', function () {
         it('Finnigan file', function () {
             const data = fs.readFileSync(pathFiles + 'SRN 00000225.cdf');
-            netcdfGcms.bind(null, data).should.throw('Finnigan format not implemented yet');
+            const json = netcdfGcms(data);
+            json.times.length.should.be.equal(11832);
+            for (let i = 0; i < json.series.length; i++) {
+                json.series[i].data.length.should.be.equal(11832);
+            }
         });
 
-        /*
         it('fromFinnigan', function () {
             const data = fs.readFileSync(pathFiles + 'SRN 00000225.cdf');
-            netcdfGcms.bind(null, data).should.throw('Finnigan format not implemented yet');
+            const json = netcdfGcms.fromFinnigan(data);
+            json.times.length.should.be.equal(11832);
+            for (let i = 0; i < json.series.length; i++) {
+                json.series[i].data.length.should.be.equal(11832);
+            }
         });
-        */
     });
 });
