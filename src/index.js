@@ -3,6 +3,7 @@
 const NetCDFReader = require('netcdfjs');
 const agilent = require('./agilent');
 const finnigan = require('./finnigan');
+const aiaTemplate = require('./aiaTemplate');
 
 /**
  * Reads a NetCDF file and returns a formatted JSON with the data from it
@@ -17,6 +18,8 @@ function netcdfGcms(data) {
         return agilent(reader);
     } else if (globalAttributes.find(val => val.name === 'source_file_format')) {
         return finnigan(reader);
+    } else if (globalAttributes.find(val => val.name === 'aia_template_revision')) {
+        return aiaTemplate(reader);
     } else {
         throw new TypeError('Unknown file format');
     }
@@ -40,6 +43,11 @@ function fromFinnigan(data) {
     return finnigan(new NetCDFReader(data));
 }
 
+function fromAiaTemplate(data) {
+    return aiaTemplate(new NetCDFReader(data));
+}
+
 module.exports = netcdfGcms;
 module.exports.fromAgilent = fromAgilent;
 module.exports.fromFinnigan = fromFinnigan;
+module.exports.fromAiaTemplate = fromAiaTemplate;
