@@ -13,13 +13,18 @@ const aiaTemplate = require('./aiaTemplate');
 function netcdfGcms(data, options) {
     let reader = new NetCDFReader(data);
     const globalAttributes = reader.globalAttributes;
+    console.log(addMeta(globalAttributes));
     let ans;
 
     if (globalAttributes.find(val => val.name === 'dataset_origin')) {
         ans = agilent(reader);
-    } else if (globalAttributes.find(val => val.name === 'source_file_format')) {
+    } else if (
+        globalAttributes.find(val => val.name === 'source_file_format')
+    ) {
         ans = finnigan(reader);
-    } else if (globalAttributes.find(val => val.name === 'aia_template_revision')) {
+    } else if (
+        globalAttributes.find(val => val.name === 'aia_template_revision')
+    ) {
         ans = aiaTemplate(reader);
     } else {
         throw new TypeError('Unknown file format');
@@ -28,6 +33,11 @@ function netcdfGcms(data, options) {
     if (options && options.meta) {
         ans.meta = addMeta(globalAttributes);
     }
+
+    if (options && options.variables) {
+        ans.variables = addVariables(reader);
+    }
+
     return ans;
 }
 
@@ -59,6 +69,13 @@ function addMeta(globalAttributes) {
         ans[item.name] = item.value;
     }
     return ans;
+}
+
+function addVariables(reader) {
+    for (let variable of reader.variables) {
+        variable.value = reader.getDataVariable(variable);
+    }
+    return reader.variables;
 }
 
 module.exports = netcdfGcms;

@@ -1,10 +1,10 @@
 'use strict';
 
-const netcdfGcms = require('..');
+const netcdfGcms = require('../src');
 const fs = require('fs');
 const pathFiles = __dirname + '/files/';
 
-const data = fs.readFileSync(pathFiles + 'P071.CDF');
+const data = fs.readFileSync(pathFiles + 'agilent-gcms.cdf');
 
 describe('Agilent format', () => {
     it('Agilent file', () => {
