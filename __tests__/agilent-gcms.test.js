@@ -18,7 +18,7 @@ describe('Agilent format', () => {
   });
 
   it('fromAgilent', () => {
-    const json = netcdfGcms.fromAgilent(data);
+    const json = netcdfGcms.fromAgilentGCMS(data);
     expect(json.times).toHaveLength(6401);
     for (let i = 0; i < json.series.length; i++) {
       expect(json.series[i].data).toHaveLength(6401);

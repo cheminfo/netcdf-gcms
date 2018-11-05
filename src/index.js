@@ -27,13 +27,15 @@ function netcdfGcms(data, options) {
 
   let ans;
 
-  console.log(detector_name, mass_values);
-
   if (mass_values && dataset_origin) {
     ans = agilentGCMS(reader);
-  } else if (mass_values && instrument_mfr.match(/finnigan/i)) {
+  } else if (
+    mass_values &&
+    instrument_mfr &&
+    instrument_mfr.match(/finnigan/i)
+  ) {
     ans = finniganGCMS(reader);
-  } else if (detector_name.match(/dad/i)) {
+  } else if (detector_name && detector_name.match(/dad/i)) {
     // diode array agilent HPLC
     ans = agilentHPLC(reader);
   } else if (aia_template_revision) {

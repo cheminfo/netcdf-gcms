@@ -19,7 +19,7 @@ describe('Finnigan format', () => {
   });
 
   it('fromFinnigan', () => {
-    const json = netcdfGcms.fromFinnigan(data);
+    const json = netcdfGcms.fromFinniganGCMS(data);
     expect(json.times).toHaveLength(11832);
     for (let i = 0; i < json.series.length; i++) {
       expect(json.series[i].data).toHaveLength(11832);
