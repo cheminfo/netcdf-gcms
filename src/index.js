@@ -3,6 +3,7 @@
 const NetCDFReader = require('netcdfjs');
 
 const agilentGCMS = require('./agilentGCMS');
+const brukerGCMS = require('./brukerGCMS');
 const agilentHPLC = require('./agilentHPLC');
 const finniganGCMS = require('./finniganGCMS');
 const aiaTemplate = require('./aiaTemplate');
@@ -35,6 +36,8 @@ function netcdfGcms(data, options) {
     instrument_mfr.match(/finnigan/i)
   ) {
     ans = finniganGCMS(reader);
+  } else if (mass_values && instrument_mfr && instrument_mfr.match(/bruker/i)) {
+    ans = brukerGCMS(reader);
   } else if (detector_name && detector_name.match(/dad/i)) {
     // diode array agilent HPLC
     ans = agilentHPLC(reader);
