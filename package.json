@@ -1,6 +1,6 @@
 {
   "name": "netcdf-gcms",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Parser from NetCDF files to JSON usable for GCMS",
   "main": "./src/index.js",
   "files": [
