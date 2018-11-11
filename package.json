@@ -40,6 +40,6 @@
     "jest": "^21.2.1"
   },
   "dependencies": {
-    "netcdfjs": "^0.6.0"
+    "netcdfjs": "^0.7.0"
   }
 }
