@@ -17,10 +17,9 @@ const aiaTemplate = require('./aiaTemplate');
  * @param {boolean} [options.variables] -add variables information
  * @return {{times, series}} - JSON with the time, TIC and mass spectra values
  */
-function netcdfGcms(data, options) {
+function netcdfGcms(data, options = {}) {
   let reader = new NetCDFReader(data);
-
-  // console.log(reader.toString());
+  const globalAttributes = reader.globalAttributes;
 
   let instrument_mfr = reader.getDataVariableAsString('instrument_mfr');
   let dataset_origin = reader.attributeExists('dataset_origin');
@@ -28,7 +27,6 @@ function netcdfGcms(data, options) {
   let detector_name = reader.getAttribute('detector_name');
   let aia_template_revision = reader.attributeExists('aia_template_revision');
   let source_file_format = reader.getAttribute('source_file_format');
-  const globalAttributes = reader.globalAttributes;
 
   let ans;
 
@@ -48,7 +46,7 @@ function netcdfGcms(data, options) {
     source_file_format.match(/shimadzu/i)
   ) {
     ans = shimadzuGCMS(reader);
-  } else if (detector_name && detector_name.match(/dad/i)) {
+  } else if (detector_name && detector_name.match(/(dad|tic)/i)) {
     // diode array agilent HPLC
     ans = agilentHPLC(reader);
   } else if (aia_template_revision) {
@@ -57,11 +55,11 @@ function netcdfGcms(data, options) {
     throw new TypeError('Unknown file format');
   }
 
-  if (options && options.meta) {
+  if (options.meta) {
     ans.meta = addMeta(globalAttributes);
   }
 
-  if (options && options.variables) {
+  if (options.variables) {
     ans.variables = addVariables(reader);
   }
 

@@ -52,18 +52,21 @@ function agilentHPLC(reader) {
   const wavelength = Number(
     reader.getAttribute('detector_name').replace(/.*Sig=([0-9]+).*/, '$1')
   );
-  const samplingInterval = reader.getDataVariable(
-    'actual_sampling_interval'
-  )[0];
   const delayTime = reader.getDataVariable('actual_delay_time')[0];
   const runtimeLength = reader.getDataVariable('actual_run_time_length')[0];
+  let samplingInterval;
+  if (reader.dataVariableExists('actual_sampling_interval')) {
+    samplingInterval = reader.getDataVariable('actual_sampling_interval')[0];
 
-  if (
-    Math.abs(delayTime + samplingInterval * numberPoints - runtimeLength) > 3
-  ) {
-    throw new Error(
-      'The expected last time does not correspond to the runtimeLength'
-    );
+    if (
+      Math.abs(delayTime + samplingInterval * numberPoints - runtimeLength) > 3
+    ) {
+      throw new Error(
+        'The expected last time does not correspond to the runtimeLength'
+      );
+    }
+  } else {
+    samplingInterval = (runtimeLength - delayTime) / numberPoints;
   }
 
   let times = [];
