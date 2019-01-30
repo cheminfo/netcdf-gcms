@@ -49,9 +49,15 @@
 function agilentHPLC(reader) {
   const intensities = reader.getDataVariable('ordinate_values');
   const numberPoints = intensities.length;
-  const wavelength = Number(
-    reader.getAttribute('detector_name').replace(/.*Sig=([0-9]+).*/, '$1')
-  );
+  const detector = reader.getAttribute('detector_name');
+  let channel;
+  if (detector.match(/dad/i)) {
+    channel = `uv${Number(detector.replace(/.*Sig=([0-9]+).*/, '$1'))}`;
+  } else if (detector.match(/tic/i)) {
+    channel = 'tic';
+  } else {
+    channel = 'unknown';
+  }
   const delayTime = reader.getDataVariable('actual_delay_time')[0];
   const runtimeLength = reader.getDataVariable('actual_run_time_length')[0];
   let samplingInterval;
@@ -80,7 +86,7 @@ function agilentHPLC(reader) {
     times,
     series: [
       {
-        name: `uv${wavelength}`,
+        name: channel,
         dimension: 1,
         data: intensities
       }
