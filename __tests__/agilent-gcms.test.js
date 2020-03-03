@@ -27,7 +27,7 @@ describe('Agilent format', () => {
 
   it('with meta', () => {
     const json = netcdfGcms(data, { meta: true });
-    expect(json.meta).toEqual({
+    expect(json.meta).toStrictEqual({
       administrative_comments: '1% CH2Cl2',
       dataset_completeness: 'C1+C2',
       dataset_origin: 'Santa Clara, CA',
@@ -54,7 +54,7 @@ describe('Agilent format', () => {
       test_scan_direction: 'Up',
       test_scan_function: 'Mass Scan',
       test_scan_law: 'Linear',
-      test_separation_type: 'No Chromatography'
+      test_separation_type: 'No Chromatography',
     });
   });
 });

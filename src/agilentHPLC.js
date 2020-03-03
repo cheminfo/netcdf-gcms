@@ -68,7 +68,7 @@ function agilentHPLC(reader) {
       Math.abs(delayTime + samplingInterval * numberPoints - runtimeLength) > 3
     ) {
       throw new Error(
-        'The expected last time does not correspond to the runtimeLength'
+        'The expected last time does not correspond to the runtimeLength',
       );
     }
   } else {
@@ -88,9 +88,9 @@ function agilentHPLC(reader) {
       {
         name: channel,
         dimension: 1,
-        data: intensities
-      }
-    ]
+        data: intensities,
+      },
+    ],
   };
 }
 

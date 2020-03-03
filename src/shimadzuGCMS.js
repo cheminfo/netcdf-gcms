@@ -81,13 +81,13 @@ function shimadzuGCMS(reader) {
   const intensityValues = reader.getDataVariable('intensity_values');
   scanIndex.push(massValues.length);
 
-  var ms = new Array(time.length);
-  var index = 0;
-  for (var i = 0; i < ms.length; i++) {
-    var size = scanIndex[i + 1] - scanIndex[i];
+  let ms = new Array(time.length);
+  let index = 0;
+  for (let i = 0; i < ms.length; i++) {
+    let size = scanIndex[i + 1] - scanIndex[i];
     ms[i] = [new Array(size), new Array(size)];
 
-    for (var j = 0; j < size; j++) {
+    for (let j = 0; j < size; j++) {
       ms[i][0][j] = massValues[index];
       ms[i][1][j] = intensityValues[index++];
     }
@@ -99,14 +99,14 @@ function shimadzuGCMS(reader) {
       {
         name: 'tic',
         dimension: 1,
-        data: tic
+        data: tic,
       },
       {
         name: 'ms',
         dimension: 2,
-        data: ms
-      }
-    ]
+        data: ms,
+      },
+    ],
   };
 }
 

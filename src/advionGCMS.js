@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /* reader.toString() provides the following information
     DIMENSIONS
@@ -6,19 +6,19 @@
       scan_number                    = size: 60
       error_number                   = size: 1
       _64_byte_string                = size: 64
-    
+
     GLOBAL ATTRIBUTES
       dataset_completeness           = C1
       ms_template_revision           = 1.0.1
       netcdf_revision                = 4.2
       languages                      = English
-      administrative_comments        = 
+      administrative_comments        =
       netcdf_file_date_time_stamp    = 202003031432433600000
       experiment_date_time_stamp     = 202003031432433600000
-      source_file_reference          = JC-012_cleavage test_Scan1_is1.datx 2020.03.03 14:32:43 
+      source_file_reference          = JC-012_cleavage test_Scan1_is1.datx 2020.03.03 14:32:43
       source_file_format             = Advion ExpressIon Compact Mass Spectrometer Data System
       source_file_date_time_stamp    = 202003031432433600000
-      experiment_title               = 
+      experiment_title               =
       experiment_type                = Continuum Mass Spectrum
       test_ionization_mode           = Electrospray Ionization
       test_ionization_polarity       = Positive Polarity
@@ -40,7 +40,7 @@
       starting_scan_number           = 1
       actual_delay_time              = 0
       raw_data_uniform_sampling_flag = 0
-    
+
     VARIABLES:
       error_log                      = ["","","","","","","","","","","","","","","",""," (length: 64)
       scan_index                     = [0,3096,6282,9865,13409,16765,20281,23603,27099,30 (length: 60)
@@ -63,22 +63,22 @@
 */
 
 function advionGCMS(reader) {
-  const time = reader.getDataVariable("scan_acquisition_time");
-  const tic = reader.getDataVariable("total_intensity");
+  const time = reader.getDataVariable('scan_acquisition_time');
+  const tic = reader.getDataVariable('total_intensity');
 
   // variables to get the mass-intensity values
-  let scanIndex = reader.getDataVariable("scan_index");
-  const massValues = reader.getDataVariable("mass_values");
-  const intensityValues = reader.getDataVariable("intensity_values");
+  let scanIndex = reader.getDataVariable('scan_index');
+  const massValues = reader.getDataVariable('mass_values');
+  const intensityValues = reader.getDataVariable('intensity_values');
   scanIndex.push(massValues.length);
 
-  var ms = new Array(time.length);
-  var index = 0;
-  for (var i = 0; i < ms.length; i++) {
-    var size = scanIndex[i + 1] - scanIndex[i];
+  let ms = new Array(time.length);
+  let index = 0;
+  for (let i = 0; i < ms.length; i++) {
+    let size = scanIndex[i + 1] - scanIndex[i];
     ms[i] = [new Array(size), new Array(size)];
 
-    for (var j = 0; j < size; j++) {
+    for (let j = 0; j < size; j++) {
       ms[i][0][j] = massValues[index];
       ms[i][1][j] = intensityValues[index++];
     }
@@ -88,16 +88,16 @@ function advionGCMS(reader) {
     times: time,
     series: [
       {
-        name: "tic",
+        name: 'tic',
         dimension: 1,
-        data: tic
+        data: tic,
       },
       {
-        name: "ms",
+        name: 'ms',
         dimension: 2,
-        data: ms
-      }
-    ]
+        data: ms,
+      },
+    ],
   };
 }
 

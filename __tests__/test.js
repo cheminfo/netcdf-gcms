@@ -1,8 +1,8 @@
 'use strict';
 
-const netcdfGcms = require('..');
-
 const fs = require('fs');
+
+const netcdfGcms = require('..');
 
 const pathFiles = `${__dirname}/files/`;
 

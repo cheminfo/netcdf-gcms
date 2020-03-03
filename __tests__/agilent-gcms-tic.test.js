@@ -44,7 +44,7 @@ describe('Agilent HPLC/MS with only HPLC', () => {
       detector_unit: 'counts',
       detection_method_name: 'RSD_1-2_A1_100-0%_20+10MIN.M',
       detector_name: 'MSD1 TIC, MS File',
-      retention_unit: 'seconds'
+      retention_unit: 'seconds',
     });
   });
 });
