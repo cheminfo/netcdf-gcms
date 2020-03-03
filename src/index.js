@@ -1,13 +1,14 @@
-'use strict';
+"use strict";
 
-const NetCDFReader = require('netcdfjs');
+const NetCDFReader = require("netcdfjs");
 
-const agilentGCMS = require('./agilentGCMS');
-const brukerGCMS = require('./brukerGCMS');
-const agilentHPLC = require('./agilentHPLC');
-const finniganGCMS = require('./finniganGCMS');
-const shimadzuGCMS = require('./shimadzuGCMS');
-const aiaTemplate = require('./aiaTemplate');
+const agilentGCMS = require("./agilentGCMS");
+const brukerGCMS = require("./brukerGCMS");
+const agilentHPLC = require("./agilentHPLC");
+const finniganGCMS = require("./finniganGCMS");
+const shimadzuGCMS = require("./shimadzuGCMS");
+const advionGCMS = require("./advionGCMS");
+const aiaTemplate = require("./aiaTemplate");
 
 /**
  * Reads a NetCDF file and returns a formatted JSON with the data from it
@@ -21,12 +22,12 @@ function netcdfGcms(data, options = {}) {
   let reader = new NetCDFReader(data);
   const globalAttributes = reader.globalAttributes;
 
-  let instrument_mfr = reader.getDataVariableAsString('instrument_mfr');
-  let dataset_origin = reader.attributeExists('dataset_origin');
-  let mass_values = reader.dataVariableExists('mass_values');
-  let detector_name = reader.getAttribute('detector_name');
-  let aia_template_revision = reader.attributeExists('aia_template_revision');
-  let source_file_format = reader.getAttribute('source_file_format');
+  let instrument_mfr = reader.getDataVariableAsString("instrument_mfr");
+  let dataset_origin = reader.attributeExists("dataset_origin");
+  let mass_values = reader.dataVariableExists("mass_values");
+  let detector_name = reader.getAttribute("detector_name");
+  let aia_template_revision = reader.attributeExists("aia_template_revision");
+  let source_file_format = reader.getAttribute("source_file_format");
 
   let ans;
 
@@ -40,19 +41,27 @@ function netcdfGcms(data, options = {}) {
     ans = finniganGCMS(reader);
   } else if (mass_values && instrument_mfr && instrument_mfr.match(/bruker/i)) {
     ans = brukerGCMS(reader);
+  } else if (mass_values && instrument_mfr && instrument_mfr.match(/bruker/i)) {
+    ans = brukerGCMS(reader);
   } else if (
     mass_values &&
     source_file_format &&
     source_file_format.match(/shimadzu/i)
   ) {
     ans = shimadzuGCMS(reader);
+  } else if (
+    mass_values &&
+    source_file_format &&
+    source_file_format.match(/advion/i)
+  ) {
+    ans = advionGCMS(reader);
   } else if (detector_name && detector_name.match(/(dad|tic)/i)) {
     // diode array agilent HPLC
     ans = agilentHPLC(reader);
   } else if (aia_template_revision) {
     ans = aiaTemplate(reader);
   } else {
-    throw new TypeError('Unknown file format');
+    throw new TypeError("Unknown file format");
   }
 
   if (options.meta) {
