@@ -1,421 +1,325 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset='utf-8'>
-  <title>netcdf-gcms 1.4.0 | Documentation</title>
-  <meta name='description' content='Parser from NetCDF files to JSON usable for GCMS'>
-  <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' rel='stylesheet'>
-  <link href='assets/style.css' rel='stylesheet'>
-  <link href='assets/github.css' rel='stylesheet'>
-  <link href='assets/split.css' rel='stylesheet'>
-</head>
-<body class='documentation m0'>
-    <div class='flex'>
-      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
-        <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>netcdf-gcms</h3>
-          <div class='mb1'><code>1.4.0</code></div>
+  <head>
+    <meta charset="utf-8" />
+    <title>netcdf-gcms 1.4.0 | Documentation</title>
+    <meta
+      name="description"
+      content="Parser from NetCDF files to JSON usable for GCMS"
+    />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link href="assets/bass.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/github.css" rel="stylesheet" />
+    <link href="assets/split.css" rel="stylesheet" />
+  </head>
+  <body class="documentation m0">
+    <div class="flex">
+      <div id="split-left" class="overflow-auto fs0 height-viewport-100">
+        <div class="py1 px2">
+          <h3 class="mb0 no-anchor">netcdf-gcms</h3>
+          <div class="mb1"><code>1.4.0</code></div>
           <input
-            placeholder='Filter'
-            id='filter-input'
-            class='col12 block input'
-            type='text' />
-          <div id='toc'>
-            <ul class='list-reset h5 py1-ul'>
-              
-                
-                <li><a
-                  href='#fromagilentgcms'
-                  class="">
+            placeholder="Filter"
+            id="filter-input"
+            class="col12 block input"
+            type="text"
+          />
+          <div id="toc">
+            <ul class="list-reset h5 py1-ul">
+              <li>
+                <a href="#fromagilentgcms" class="">
                   fromAgilentGCMS
-                  
                 </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#fromagilenthplc'
-                  class="">
+              </li>
+
+              <li>
+                <a href="#fromagilenthplc" class="">
                   fromAgilentHPLC
-                  
                 </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#fromfinnigangcms'
-                  class="">
+              </li>
+
+              <li>
+                <a href="#fromfinnigangcms" class="">
                   fromFinniganGCMS
-                  
                 </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#netcdfgcms'
-                  class="">
+              </li>
+
+              <li>
+                <a href="#netcdfgcms" class="">
                   netcdfGcms
-                  
                 </a>
-                
-                </li>
-              
+              </li>
             </ul>
           </div>
-          <div class='mt1 h6 quiet'>
-            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
+          <div class="mt1 h6 quiet">
+            <a href="https://documentation.js.org/reading-documentation.html"
+              >Need help reading this?</a
+            >
           </div>
         </div>
       </div>
-      <div id='split-right' class='relative overflow-auto height-viewport-100'>
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
+      <div id="split-right" class="relative overflow-auto height-viewport-100">
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="fromagilentgcms">
+              fromAgilentGCMS
+            </h3>
 
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='fromagilentgcms'>
-      fromAgilentGCMS
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L85-L87'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Reads a NetCDF file with Agilent GCMS format and returns a formatted JSON with the data from it</p>
-
-    <div class='pre p1 fill-light mt0'>fromAgilentGCMS(data: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>): {times, series}</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>)</code>
-	    ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
-
+            <a
+              class="fr fill-darken0 round round pad1x quiet h5"
+              href="https://github.com/cheminfo/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L85-L87"
+            >
+              <span>src/index.js</span>
+            </a>
           </div>
-          
-        </div>
-      
-    </div>
-  
 
-  
+          <p>
+            Reads a NetCDF file with Agilent GCMS format and returns a formatted
+            JSON with the data from it
+          </p>
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>{times, series}</code>:
-        JSON with the time, TIC and mass spectra values
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='fromagilenthplc'>
-      fromAgilentHPLC
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L94-L96'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Reads a NetCDF file with Agilent HPLC format and returns a formatted JSON with the data from it</p>
-
-    <div class='pre p1 fill-light mt0'>fromAgilentHPLC(data: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>): {times, series}</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>)</code>
-	    ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
-
+          <div class="pre p1 fill-light mt0">
+            fromAgilentGCMS(data:
+            <a
+              href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+              >ArrayBuffer</a
+            >): {times, series}
           </div>
-          
-        </div>
-      
-    </div>
-  
 
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>{times, series}</code>:
-        JSON with the time, TIC and mass spectra values
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='fromfinnigangcms'>
-      fromFinniganGCMS
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L103-L105'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Reads a NetCDF file with Finnigan format and returns a formatted JSON with the data from it</p>
-
-    <div class='pre p1 fill-light mt0'>fromFinniganGCMS(data: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>): {times, series}</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>)</code>
-	    ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
-
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">data</span>
+                <code class="quiet"
+                  >(<a
+                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+                    >ArrayBuffer</a
+                  >)</code
+                >
+                ArrayBuffer or any Typed Array (including Node.js' Buffer from
+                v4) with the data
+              </div>
+            </div>
           </div>
-          
-        </div>
-      
-    </div>
-  
 
-  
+          <div class="py1 quiet mt1 prose-big">Returns</div>
+          <code>{times, series}</code>: JSON with the time, TIC and mass spectra
+          values
+        </section>
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>{times, series}</code>:
-        JSON with the time, TIC and mass spectra values
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="fromagilenthplc">
+              fromAgilentHPLC
+            </h3>
 
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='netcdfgcms'>
-      netcdfGcms
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/cheminfo-js/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L21-L78'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Reads a NetCDF file and returns a formatted JSON with the data from it</p>
-
-    <div class='pre p1 fill-light mt0'>netcdfGcms(data: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>, options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): {times, series}</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>data</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a>)</code>
-	    ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
-
+            <a
+              class="fr fill-darken0 round round pad1x quiet h5"
+              href="https://github.com/cheminfo/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L94-L96"
+            >
+              <span>src/index.js</span>
+            </a>
           </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
-            = <code>{}</code>)</code>
-	    
+
+          <p>
+            Reads a NetCDF file with Agilent HPLC format and returns a formatted
+            JSON with the data from it
+          </p>
+
+          <div class="pre p1 fill-light mt0">
+            fromAgilentHPLC(data:
+            <a
+              href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+              >ArrayBuffer</a
+            >): {times, series}
           </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.meta</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
-  </td>
-  <td class='break-word'><span>add meta information
-</span></td>
-</tr>
 
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">data</span>
+                <code class="quiet"
+                  >(<a
+                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+                    >ArrayBuffer</a
+                  >)</code
+                >
+                ArrayBuffer or any Typed Array (including Node.js' Buffer from
+                v4) with the data
+              </div>
+            </div>
+          </div>
 
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>options.variables</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>?</code>
-  </td>
-  <td class='break-word'><span>-add variables information
-</span></td>
-</tr>
+          <div class="py1 quiet mt1 prose-big">Returns</div>
+          <code>{times, series}</code>: JSON with the time, TIC and mass spectra
+          values
+        </section>
 
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="fromfinnigangcms">
+              fromFinniganGCMS
+            </h3>
 
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
+            <a
+              class="fr fill-darken0 round round pad1x quiet h5"
+              href="https://github.com/cheminfo/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L103-L105"
+            >
+              <span>src/index.js</span>
+            </a>
+          </div>
 
-  
+          <p>
+            Reads a NetCDF file with Finnigan format and returns a formatted
+            JSON with the data from it
+          </p>
 
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>{times, series}</code>:
-        JSON with the time, TIC and mass spectra values
+          <div class="pre p1 fill-light mt0">
+            fromFinniganGCMS(data:
+            <a
+              href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+              >ArrayBuffer</a
+            >): {times, series}
+          </div>
 
-      
-    
-  
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">data</span>
+                <code class="quiet"
+                  >(<a
+                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+                    >ArrayBuffer</a
+                  >)</code
+                >
+                ArrayBuffer or any Typed Array (including Node.js' Buffer from
+                v4) with the data
+              </div>
+            </div>
+          </div>
 
-  
+          <div class="py1 quiet mt1 prose-big">Returns</div>
+          <code>{times, series}</code>: JSON with the time, TIC and mass spectra
+          values
+        </section>
 
-  
+        <section class="p2 mb2 clearfix bg-white minishadow">
+          <div class="clearfix">
+            <h3 class="fl m0" id="netcdfgcms">
+              netcdfGcms
+            </h3>
 
-  
+            <a
+              class="fr fill-darken0 round round pad1x quiet h5"
+              href="https://github.com/cheminfo/netcdf-gcms/blob/4818d452ec7cff8619b9d27ee0c08d6d43ad7851/src/index.js#L21-L78"
+            >
+              <span>src/index.js</span>
+            </a>
+          </div>
 
-  
+          <p>
+            Reads a NetCDF file and returns a formatted JSON with the data from
+            it
+          </p>
 
-  
+          <div class="pre p1 fill-light mt0">
+            netcdfGcms(data:
+            <a
+              href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+              >ArrayBuffer</a
+            >, options:
+            <a
+              href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object"
+              >object</a
+            >): {times, series}
+          </div>
 
-  
-</section>
+          <div class="py1 quiet mt1 prose-big">Parameters</div>
+          <div class="prose">
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">data</span>
+                <code class="quiet"
+                  >(<a
+                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"
+                    >ArrayBuffer</a
+                  >)</code
+                >
+                ArrayBuffer or any Typed Array (including Node.js' Buffer from
+                v4) with the data
+              </div>
+            </div>
 
-          
-        
+            <div class="space-bottom0">
+              <div>
+                <span class="code bold">options</span>
+                <code class="quiet"
+                  >(<a
+                    href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object"
+                    >object</a
+                  >
+                  = <code>{}</code>)</code
+                >
+              </div>
+
+              <table class="mt1 mb2 fixed-table h5 col-12">
+                <colgroup>
+                  <col width="30%" />
+                  <col width="70%" />
+                </colgroup>
+                <thead>
+                  <tr class="bold fill-light">
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody class="mt1">
+                  <tr>
+                    <td class="break-word">
+                      <span class="code bold">options.meta</span>
+                      <code class="quiet"
+                        ><a
+                          href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean"
+                          >boolean</a
+                        >?</code
+                      >
+                    </td>
+                    <td class="break-word">
+                      <span>add meta information </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="break-word">
+                      <span class="code bold">options.variables</span>
+                      <code class="quiet"
+                        ><a
+                          href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean"
+                          >boolean</a
+                        >?</code
+                      >
+                    </td>
+                    <td class="break-word">
+                      <span>-add variables information </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="py1 quiet mt1 prose-big">Returns</div>
+          <code>{times, series}</code>: JSON with the time, TIC and mass spectra
+          values
+        </section>
       </div>
     </div>
-  <script src='assets/anchor.js'></script>
-  <script src='assets/split.js'></script>
-  <script src='assets/site.js'></script>
-</body>
+    <script src="assets/anchor.js"></script>
+    <script src="assets/split.js"></script>
+    <script src="assets/site.js"></script>
+  </body>
 </html>
