@@ -17,6 +17,13 @@
     "type": "git",
     "url": "https://github.com/cheminfo/netcdf-gcms.git"
   },
+  "prettier": {
+    "arrowParens": "always",
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all"
+  },
   "keywords": [
     "cheminfo",
     "chemestry",
