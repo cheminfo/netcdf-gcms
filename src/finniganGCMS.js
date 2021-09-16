@@ -12,7 +12,7 @@
       experiment_type                = Centroided Mass Spectrum
       netcdf_revision                = 2.3.2
       operator_name                  = DSQ
-      source_file_reference          = G:\FCO\FCO_CIO\K2\MP2013\T1 IL database 2013\9. IL Data Entry\12_HU_HIFS\IL database\RAW files\Lukoil-Disel-150901.RAW
+      source_file_reference          = G:\FCO\FCO_CIO\K2\MP2013\T1 IL database 2013\9. IL Data Entry\12_HU_HIFS\IL database\RAW data\Lukoil-Disel-150901.RAW
       source_file_date_time_stamp    = 20150902041002+0100
       source_file_format             = Finnigan
       languages                      = English

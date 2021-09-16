@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const netcdfGcms = require('..');
 
-const pathFiles = `${__dirname}/files/`;
+const pathFiles = `${__dirname}/data/`;
 
 describe('netcdf-gcms test', () => {
   it('Unknown file format', () => {

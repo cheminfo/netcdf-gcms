@@ -3,9 +3,9 @@
 const fs = require('fs');
 const join = require('path').join;
 
-const netcdfGcms = require('../src');
+const netcdfGcms = require('..');
 
-const pathFiles = `${__dirname}/files/`;
+const pathFiles = `${__dirname}/data/`;
 
 const data = fs.readFileSync(join(pathFiles, 'finnigan-gcms.cdf'));
 

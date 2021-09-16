@@ -2,9 +2,9 @@
 
 const fs = require('fs');
 
-const netcdfGcms = require('../src');
+const netcdfGcms = require('..');
 
-const pathFiles = `${__dirname}/files/`;
+const pathFiles = `${__dirname}/data/`;
 
 describe('Agilent format', () => {
   const data = fs.readFileSync(`${pathFiles}agilent-hplc.cdf`);
