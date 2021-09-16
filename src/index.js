@@ -1,14 +1,13 @@
 'use strict';
 
-const NetCDFReader = require('netcdfjs');
-
+const { NetCDFReader } = require('netcdfjs');
+const advionGCMS = require('./advionGCMS');
 const agilentGCMS = require('./agilentGCMS');
-const brukerGCMS = require('./brukerGCMS');
 const agilentHPLC = require('./agilentHPLC');
+const aiaTemplate = require('./aiaTemplate');
+const brukerGCMS = require('./brukerGCMS');
 const finniganGCMS = require('./finniganGCMS');
 const shimadzuGCMS = require('./shimadzuGCMS');
-const advionGCMS = require('./advionGCMS');
-const aiaTemplate = require('./aiaTemplate');
 
 /**
  * Reads a NetCDF file and returns a formatted JSON with the data from it
@@ -41,8 +40,6 @@ function netcdfGcms(data, options = {}) {
     instrument_mfr.match(/finnigan/i)
   ) {
     ans = finniganGCMS(reader);
-  } else if (mass_values && instrument_mfr && instrument_mfr.match(/bruker/i)) {
-    ans = brukerGCMS(reader);
   } else if (mass_values && instrument_mfr && instrument_mfr.match(/bruker/i)) {
     ans = brukerGCMS(reader);
   } else if (
