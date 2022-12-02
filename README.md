@@ -3,7 +3,6 @@
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
-[![David deps][david-image]][david-url]
 [![npm download][download-image]][download-url]
 
 Parser from NetCDF files to JSON usable for GCMS
@@ -69,7 +68,5 @@ json ===
 [travis-url]: https://travis-ci.org/cheminfo/netcdf-gcms
 [coveralls-image]: https://img.shields.io/coveralls/cheminfo/netcdf-gcms.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/github/cheminfo/netcdf-gcms
-[david-image]: https://img.shields.io/david/cheminfo/netcdf-gcms.svg?style=flat-square
-[david-url]: https://david-dm.org/cheminfo/netcdf-gcms
 [download-image]: https://img.shields.io/npm/dm/netcdf-gcms.svg?style=flat-square
 [download-url]: https://npmjs.org/package/netcdf-gcms
