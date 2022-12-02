@@ -65,7 +65,7 @@ json ===
 
 [npm-image]: https://img.shields.io/npm/v/netcdf-gcms.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/netcdf-gcms
-[travis-image]: https://img.shields.io/travis/cheminfo/netcdf-gcms/master.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/cheminfo/netcdf-gcms/main.svg?style=flat-square
 [travis-url]: https://travis-ci.org/cheminfo/netcdf-gcms
 [coveralls-image]: https://img.shields.io/coveralls/cheminfo/netcdf-gcms.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/github/cheminfo/netcdf-gcms
