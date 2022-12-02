@@ -12,8 +12,8 @@
     "eslint-fix": "npm run eslint -- --fix",
     "prettier": "prettier --check src",
     "prettier-write": "prettier --write src",
-    "test": "npm run testonly && npm run eslint",
-    "testonly": "jest"
+    "test": "npm run test-only && npm run eslint && npm run prettier",
+    "test-only": "jest"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/cheminfo/netcdf-gcms#readme",
   "devDependencies": {
+    "@types/jest": "^29.2.3",
     "cheminfo-tools": "^1.23.3",
     "eslint": "^8.28.0",
     "eslint-config-cheminfo": "^8.1.3",

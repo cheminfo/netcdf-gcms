@@ -1,4 +1,4 @@
-
+'use strict';
 
 function aiaTemplate(reader) {
   let time = [];

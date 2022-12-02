@@ -4,3 +4,5 @@ env:
   node: true
 rules:
   camelcase: 0
+parserOptions:
+  sourceType: script 
