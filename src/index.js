@@ -1,6 +1,7 @@
-'use strict';
+
 
 const { NetCDFReader } = require('netcdfjs');
+
 const advionGCMS = require('./advionGCMS');
 const agilentGCMS = require('./agilentGCMS');
 const agilentHPLC = require('./agilentHPLC');

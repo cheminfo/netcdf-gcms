@@ -1,3 +1,6 @@
 extends: 'eslint-config-cheminfo'
+env:
+  jest: true
+  node: true
 rules:
   camelcase: 0

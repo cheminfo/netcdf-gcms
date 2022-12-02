@@ -1,4 +1,4 @@
-'use strict';
+
 
 /* reader.toString() provides the following information
     DIMENSIONS
