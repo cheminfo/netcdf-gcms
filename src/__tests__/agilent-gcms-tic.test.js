@@ -1,12 +1,12 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms, fromAgilentHPLC } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(`${pathFiles}agilent-gcms-tic.cdf`);
+const data = readFileSync(`${pathFiles}agilent-gcms-tic.cdf`);
 
 describe('Agilent HPLC/MS with only HPLC', () => {
   it('Agilent file', () => {
@@ -18,7 +18,7 @@ describe('Agilent HPLC/MS with only HPLC', () => {
   });
 
   it('fromAgilent', () => {
-    const json = netcdfGcms.fromAgilentHPLC(data);
+    const json = fromAgilentHPLC(data);
     expect(json.times).toHaveLength(1645);
     for (let i = 0; i < json.series.length; i++) {
       expect(json.series[i].data).toHaveLength(1645);
@@ -37,8 +37,7 @@ describe('Agilent HPLC/MS with only HPLC', () => {
       experiment_title: 'SequenceLine: 10  Inj: 1',
       operator_name: 'SYSTEM',
       separation_experiment_type: 'liquid chromatography',
-      source_file_reference:
-        'D:\\SEP_2018\\1\\DATA\\2019-03-14 2019-03-14 13-21-10\\010-P1-B1-RMSIMONE_RSD10-005_CC1.D',
+      source_file_reference: String.raw`D:\SEP_2018\1\DATA\2019-03-14 2019-03-14 13-21-10\010-P1-B1-RMSIMONE_RSD10-005_CC1.D`,
       sample_name: 'rmsimone_RSD10-005_CC1',
       sample_id: '',
       detector_unit: 'counts',

@@ -1,13 +1,13 @@
-'use strict';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-const fs = require('fs');
-const join = require('path').join;
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { fromFinniganGCMS, netcdfGcms } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(join(pathFiles, 'finnigan-gcms.cdf'));
+const data = readFileSync(join(pathFiles, 'finnigan-gcms.cdf'));
 
 describe('Finnigan format', () => {
   it('Finnigan file', () => {
@@ -19,7 +19,7 @@ describe('Finnigan format', () => {
   });
 
   it('fromFinnigan', () => {
-    const json = netcdfGcms.fromFinniganGCMS(data);
+    const json = fromFinniganGCMS(data);
     expect(json.times).toHaveLength(11832);
     for (let i = 0; i < json.series.length; i++) {
       expect(json.series[i].data).toHaveLength(11832);

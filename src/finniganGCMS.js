@@ -1,5 +1,3 @@
-'use strict';
-
 /* reader.toString() provides the following information
     GLOBAL ATTRIBUTES
       dataset_completeness           = C1+C2
@@ -64,7 +62,7 @@
 
 */
 
-function finniganGCMS(reader) {
+export function finniganGCMS(reader) {
   const time = reader.getDataVariable('scan_acquisition_time');
   const tic = reader.getDataVariable('total_intensity');
 
@@ -102,5 +100,3 @@ function finniganGCMS(reader) {
     ],
   };
 }
-
-module.exports = finniganGCMS;

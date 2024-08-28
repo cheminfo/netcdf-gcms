@@ -1,14 +1,14 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
 describe('netcdf-gcms test', () => {
   it('Unknown file format', () => {
-    const data = fs.readFileSync(`${pathFiles}madis-sao.nc`);
+    const data = readFileSync(`${pathFiles}madis-sao.nc`);
     expect(() => netcdfGcms(data)).toThrow('Unknown file format');
   });
 });

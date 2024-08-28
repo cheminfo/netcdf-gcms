@@ -1,12 +1,12 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms, fromAgilentGCMS } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(`${pathFiles}agilent-gcms.cdf`);
+const data = readFileSync(`${pathFiles}agilent-gcms.cdf`);
 
 describe('Agilent format', () => {
   it('Agilent file', () => {
@@ -18,7 +18,7 @@ describe('Agilent format', () => {
   });
 
   it('fromAgilent', () => {
-    const json = netcdfGcms.fromAgilentGCMS(data);
+    const json = fromAgilentGCMS(data);
     expect(json.times).toHaveLength(6401);
     for (let i = 0; i < json.series.length; i++) {
       expect(json.series[i].data).toHaveLength(6401);

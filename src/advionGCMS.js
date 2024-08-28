@@ -1,5 +1,3 @@
-'use strict';
-
 /* reader.toString() provides the following information
     DIMENSIONS
       point_number                   = size: 0
@@ -62,7 +60,7 @@
       intensity_values               = [0,818716,462148,0,735558,952901,0,165241,421829,0 (length: 199393)
 */
 
-function advionGCMS(reader) {
+export function advionGCMS(reader) {
   const time = reader.getDataVariable('scan_acquisition_time');
   const tic = reader.getDataVariable('total_intensity');
 
@@ -100,5 +98,3 @@ function advionGCMS(reader) {
     ],
   };
 }
-
-module.exports = advionGCMS;

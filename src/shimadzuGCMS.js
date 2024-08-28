@@ -1,5 +1,3 @@
-'use strict';
-
 /* reader.toString() provides the following information
     GLOBAL ATTRIBUTES
       dataset_completeness           = C1+C2
@@ -71,7 +69,7 @@
       instrument_comments            = [" "," "," "," "," "," "," "," "," "," "," "," "," (length: 32)
 */
 
-function shimadzuGCMS(reader) {
+export function shimadzuGCMS(reader) {
   const time = reader.getDataVariable('scan_acquisition_time');
   const tic = reader.getDataVariable('total_intensity');
 
@@ -109,5 +107,3 @@ function shimadzuGCMS(reader) {
     ],
   };
 }
-
-module.exports = shimadzuGCMS;

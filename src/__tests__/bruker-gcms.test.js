@@ -1,12 +1,12 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(`${pathFiles}bruker-gcms.cdf`);
+const data = readFileSync(`${pathFiles}bruker-gcms.cdf`);
 
 describe('Agilent format', () => {
   it('Agilent file', () => {

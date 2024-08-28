@@ -1,12 +1,12 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(`${pathFiles}advion-expression.cdf`);
+const data = readFileSync(`${pathFiles}advion-expression.cdf`);
 
 describe('Advion Expression', () => {
   it('file example', () => {

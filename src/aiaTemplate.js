@@ -1,6 +1,4 @@
-'use strict';
-
-function aiaTemplate(reader) {
+export function aiaTemplate(reader) {
   let time = [];
   const tic = reader.getDataVariable('ordinate_values');
 
@@ -25,5 +23,3 @@ function aiaTemplate(reader) {
     ],
   };
 }
-
-module.exports = aiaTemplate;

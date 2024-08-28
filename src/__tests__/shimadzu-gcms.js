@@ -1,12 +1,12 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { test, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(`${pathFiles}shimadzu-gcms.cdf`);
+const data = readFileSync(`${pathFiles}shimadzu-gcms.cdf`);
 
 test('Shimadzu format', () => {
   const json = netcdfGcms(data);

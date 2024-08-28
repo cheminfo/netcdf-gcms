@@ -1,5 +1,3 @@
-'use strict';
-
 /* reader.toString() provides the following information
     GLOBAL ATTRIBUTES
       dataset_completeness           = C1+C2
@@ -46,13 +44,13 @@
       manually_reintegrated_peaks    = [0,0,0,0,0,0,0,0] (length: 8)
 */
 
-function agilentHPLC(reader) {
+export function agilentHPLC(reader) {
   const intensities = reader.getDataVariable('ordinate_values');
   const numberPoints = intensities.length;
   const detector = reader.getAttribute('detector_name');
   let channel;
   if (detector.match(/dad/i)) {
-    channel = `uv${Number(detector.replace(/.*Sig=([0-9]+).*/, '$1'))}`;
+    channel = `uv${Number(detector.replace(/.*Sig=(\d+).*/, '$1'))}`;
   } else if (detector.match(/tic/i)) {
     channel = 'tic';
   } else {
@@ -93,5 +91,3 @@ function agilentHPLC(reader) {
     ],
   };
 }
-
-module.exports = agilentHPLC;

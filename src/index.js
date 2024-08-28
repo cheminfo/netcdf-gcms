@@ -1,14 +1,12 @@
-'use strict';
+import { NetCDFReader } from 'netcdfjs';
 
-const { NetCDFReader } = require('netcdfjs');
-
-const advionGCMS = require('./advionGCMS');
-const agilentGCMS = require('./agilentGCMS');
-const agilentHPLC = require('./agilentHPLC');
-const aiaTemplate = require('./aiaTemplate');
-const brukerGCMS = require('./brukerGCMS');
-const finniganGCMS = require('./finniganGCMS');
-const shimadzuGCMS = require('./shimadzuGCMS');
+import { advionGCMS } from './advionGCMS';
+import { agilentGCMS } from './agilentGCMS';
+import { agilentHPLC } from './agilentHPLC';
+import { aiaTemplate } from './aiaTemplate';
+import { brukerGCMS } from './brukerGCMS';
+import { finniganGCMS } from './finniganGCMS';
+import { shimadzuGCMS } from './shimadzuGCMS';
 
 /**
  * Reads a NetCDF file and returns a formatted JSON with the data from it
@@ -16,9 +14,9 @@ const shimadzuGCMS = require('./shimadzuGCMS');
  * @param {object} [options={}]
  * @param {boolean} [options.meta] - add meta information
  * @param {boolean} [options.variables] -add variables information
- * @return {{times, series}} - JSON with the time, TIC and mass spectra values
+ * @returns {{times, series, meta}} - JSON with the time, TIC and mass spectra values
  */
-function netcdfGcms(data, options = {}) {
+export function netcdfGcms(data, options = {}) {
   let reader = new NetCDFReader(data);
   const globalAttributes = reader.globalAttributes;
 
@@ -78,31 +76,31 @@ function netcdfGcms(data, options = {}) {
 /**
  * Reads a NetCDF file with Agilent GCMS format and returns a formatted JSON with the data from it
  * @param {ArrayBuffer} data - ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
- * @return {{times, series}} - JSON with the time, TIC and mass spectra values
+ * @returns {{times, series}} - JSON with the time, TIC and mass spectra values
  */
-function fromAgilentGCMS(data) {
+export function fromAgilentGCMS(data) {
   return agilentGCMS(new NetCDFReader(data));
 }
 
 /**
  * Reads a NetCDF file with Agilent HPLC format and returns a formatted JSON with the data from it
  * @param {ArrayBuffer} data - ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
- * @return {{times, series}} - JSON with the time, TIC and mass spectra values
+ * @returns {{times, series}} - JSON with the time, TIC and mass spectra values
  */
-function fromAgilentHPLC(data) {
+export function fromAgilentHPLC(data) {
   return agilentHPLC(new NetCDFReader(data));
 }
 
 /**
  * Reads a NetCDF file with Finnigan format and returns a formatted JSON with the data from it
  * @param {ArrayBuffer} data - ArrayBuffer or any Typed Array (including Node.js' Buffer from v4) with the data
- * @return {{times, series}} - JSON with the time, TIC and mass spectra values
+ * @returns {{times, series}} - JSON with the time, TIC and mass spectra values
  */
-function fromFinniganGCMS(data) {
+export function fromFinniganGCMS(data) {
   return finniganGCMS(new NetCDFReader(data));
 }
 
-function fromAiaTemplate(data) {
+export function fromAiaTemplate(data) {
   return aiaTemplate(new NetCDFReader(data));
 }
 
@@ -120,9 +118,3 @@ function addVariables(reader) {
   }
   return reader.variables;
 }
-
-module.exports = netcdfGcms;
-module.exports.fromAgilentGCMS = fromAgilentGCMS;
-module.exports.fromAgilentHPLC = fromAgilentHPLC;
-module.exports.fromFinniganGCMS = fromFinniganGCMS;
-module.exports.fromAiaTemplate = fromAiaTemplate;

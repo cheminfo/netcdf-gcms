@@ -1,13 +1,13 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms, fromAgilentHPLC } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
 describe('Agilent format', () => {
-  const data = fs.readFileSync(`${pathFiles}agilent-hplc.cdf`);
+  const data = readFileSync(`${pathFiles}agilent-hplc.cdf`);
   it('Agilent HPLC file', () => {
     const json = netcdfGcms(data);
     expect(json.times).toHaveLength(4651);
@@ -17,7 +17,7 @@ describe('Agilent format', () => {
   });
 
   it('fromAgilent HPLC', () => {
-    const json = netcdfGcms.fromAgilentHPLC(data, { meta: true });
+    const json = fromAgilentHPLC(data, { meta: true });
     expect(json.times).toHaveLength(4651);
     expect(json.series[0].name).toBe('uv254');
     for (let i = 0; i < json.series.length; i++) {
@@ -27,7 +27,7 @@ describe('Agilent format', () => {
 });
 
 describe('Agilent format - no actual_sampling_interval', () => {
-  const data = fs.readFileSync(`${pathFiles}agilent-hplc2.cdf`);
+  const data = readFileSync(`${pathFiles}agilent-hplc2.cdf`);
   it('Agilent HPLC file', () => {
     const json = netcdfGcms(data, { meta: true });
 

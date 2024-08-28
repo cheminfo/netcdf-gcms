@@ -1,12 +1,12 @@
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const fs = require('fs');
+import { describe, it, expect } from 'vitest';
 
-const netcdfGcms = require('..');
+import { netcdfGcms, fromAdvionGCMS } from '..';
 
 const pathFiles = `${__dirname}/data/`;
 
-const data = fs.readFileSync(`${pathFiles}advion-gcms.cdf`);
+const data = readFileSync(`${pathFiles}advion-gcms.cdf`);
 
 describe.skip('advion format', () => {
   it('advion file', () => {
@@ -18,7 +18,7 @@ describe.skip('advion format', () => {
   });
 
   it('fromadvion', () => {
-    const json = netcdfGcms.fromadvionGCMS(data);
+    const json = fromAdvionGCMS(data);
     expect(json.times).toHaveLength(6401);
     for (let i = 0; i < json.series.length; i++) {
       expect(json.series[i].data).toHaveLength(6401);
