@@ -1,4 +1,17 @@
-# [1.4.0](https://github.com/cheminfo/netcdf-gcms/compare/v1.3.1...v1.4.0) (2020-03-03)
+# Changelog
+
+## [2.0.0](https://github.com/cheminfo/netcdf-gcms/compare/v1.5.0...v2.0.0) (2024-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Update dependencies and remove default export
+
+### Miscellaneous Chores
+
+* Update dependencies and remove default export ([18ed9d6](https://github.com/cheminfo/netcdf-gcms/commit/18ed9d69cd4345daf3fdaea221e50ccc549b42d5))
+
+## [1.4.0](https://github.com/cheminfo/netcdf-gcms/compare/v1.3.1...v1.4.0) (2020-03-03)
 
 ### Features
 
@@ -6,7 +19,7 @@
 
 <a name="1.0.0"></a>
 
-# 1.0.0 (2016-11-23)
+## 1.0.0 (2016-11-23)
 
 ### Features
 
