@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/cheminfo/netcdf-gcms/compare/v2.0.0...v3.0.0) (2024-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove options and always return meta and variables
+
+### Features
+
+* remove options and always return meta and variables ([deb042f](https://github.com/cheminfo/netcdf-gcms/commit/deb042f970aaaa9f86e5a3c81fa773fe7d879f38))
+
 ## [2.0.0](https://github.com/cheminfo/netcdf-gcms/compare/v1.5.0...v2.0.0) (2024-08-28)
 
 
