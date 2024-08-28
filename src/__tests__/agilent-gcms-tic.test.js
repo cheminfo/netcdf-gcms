@@ -26,7 +26,7 @@ describe('Agilent HPLC/MS with only HPLC', () => {
   });
 
   it('with meta', () => {
-    const json = netcdfGcms(data, { meta: true });
+    const json = netcdfGcms(data);
     expect(json.meta).toStrictEqual({
       dataset_completeness: 'C1+C2',
       aia_template_revision: '1.0',

@@ -26,7 +26,7 @@ describe('Agilent format', () => {
   });
 
   it('with meta', () => {
-    const json = netcdfGcms(data, { meta: true });
+    const json = netcdfGcms(data);
     expect(json.meta).toStrictEqual({
       administrative_comments: '1% CH2Cl2',
       dataset_completeness: 'C1+C2',

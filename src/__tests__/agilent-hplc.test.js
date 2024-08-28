@@ -17,7 +17,7 @@ describe('Agilent format', () => {
   });
 
   it('fromAgilent HPLC', () => {
-    const json = fromAgilentHPLC(data, { meta: true });
+    const json = fromAgilentHPLC(data);
     expect(json.times).toHaveLength(4651);
     expect(json.series[0].name).toBe('uv254');
     for (let i = 0; i < json.series.length; i++) {
@@ -29,7 +29,7 @@ describe('Agilent format', () => {
 describe('Agilent format - no actual_sampling_interval', () => {
   const data = readFileSync(`${pathFiles}agilent-hplc2.cdf`);
   it('Agilent HPLC file', () => {
-    const json = netcdfGcms(data, { meta: true });
+    const json = netcdfGcms(data);
 
     expect(json.times).toHaveLength(1645);
     expect(json.series).toHaveLength(1);
