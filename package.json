@@ -43,12 +43,12 @@
   },
   "homepage": "https://github.com/cheminfo/netcdf-gcms#readme",
   "devDependencies": {
-    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/coverage-v8": "^2.1.5",
     "cheminfo-build": "^1.2.0",
-    "eslint": "^8.28.0",
-    "eslint-config-cheminfo": "^11.1.1",
+    "eslint": "^9.15.0",
+    "eslint-config-cheminfo": "^12.0.1",
     "prettier": "^3.3.3",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.5"
   },
   "dependencies": {
     "netcdfjs": "^3.0.0"
