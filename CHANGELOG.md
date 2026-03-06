@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/cheminfo/netcdf-gcms/compare/v3.0.0...v4.0.0) (2026-03-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to type=module and TS
+
+### Features
+
+* migrate to type=module and TS ([1c07069](https://github.com/cheminfo/netcdf-gcms/commit/1c07069947fb062bd55edd7c096fd7736ddbe26a))
+
 ## [3.0.0](https://github.com/cheminfo/netcdf-gcms/compare/v2.0.0...v3.0.0) (2024-08-28)
 
 

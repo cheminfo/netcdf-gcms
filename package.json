@@ -1,6 +1,6 @@
 {
   "name": "netcdf-gcms",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Parser from NetCDF files to JSON usable for GC/MS",
   "type": "module",
   "exports": {
