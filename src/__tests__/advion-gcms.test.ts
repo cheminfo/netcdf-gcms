@@ -1,32 +1,28 @@
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { netcdfGcms, fromAdvionGCMS } from '..';
+import { netcdfGcms } from '../index.ts';
 
-const pathFiles = `${__dirname}/data/`;
+const pathFiles = join(import.meta.dirname, 'data');
 
-const data = readFileSync(`${pathFiles}advion-gcms.cdf`);
-
-describe.skip('advion format', () => {
+describe.todo('advion format', () => {
   it('advion file', () => {
+    const data = readFileSync(join(pathFiles, 'advion-gcms.cdf')).buffer;
     const json = netcdfGcms(data);
-    expect(json.times).toHaveLength(6401);
-    for (let i = 0; i < json.series.length; i++) {
-      expect(json.series[i].data).toHaveLength(6401);
-    }
-  });
 
-  it('fromadvion', () => {
-    const json = fromAdvionGCMS(data);
     expect(json.times).toHaveLength(6401);
-    for (let i = 0; i < json.series.length; i++) {
-      expect(json.series[i].data).toHaveLength(6401);
+
+    for (const seriesItem of json.series) {
+      expect(seriesItem.data).toHaveLength(6401);
     }
   });
 
   it('with meta', () => {
+    const data = readFileSync(join(pathFiles, 'advion-gcms.cdf')).buffer;
     const json = netcdfGcms(data);
+
     expect(json.meta).toStrictEqual({
       administrative_comments: '1% CH2Cl2',
       dataset_completeness: 'C1+C2',

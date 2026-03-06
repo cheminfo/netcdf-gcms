@@ -44,23 +44,38 @@
       manually_reintegrated_peaks    = [0,0,0,0,0,0,0,0] (length: 8)
 */
 
-export function agilentHPLC(reader) {
-  const intensities = reader.getDataVariable('ordinate_values');
+import type { NetCDFReader } from 'netcdfjs';
+
+import type { GCMSResult } from './types.ts';
+
+/**
+ * Parses an Agilent HPLC NetCDF file and returns times with detector data.
+ * @param reader - NetCDF reader instance
+ * @returns Parsed times and series data
+ */
+export function agilentHPLC(reader: NetCDFReader): GCMSResult {
+  const intensities = reader.getDataVariable('ordinate_values') as number[];
   const numberPoints = intensities.length;
-  const detector = reader.getAttribute('detector_name');
-  let channel;
+  const detector = reader.getAttribute('detector_name') as string;
+  let channel: string;
   if (detector.match(/dad/i)) {
-    channel = `uv${Number(detector.replace(/.*Sig=(\d+).*/, '$1'))}`;
+    channel = `uv${Number(detector.replace(/.*Sig=(?<wavelength>\d+).*/, '$<wavelength>'))}`;
   } else if (detector.match(/tic/i)) {
     channel = 'tic';
   } else {
     channel = 'unknown';
   }
-  const delayTime = reader.getDataVariable('actual_delay_time')[0];
-  const runtimeLength = reader.getDataVariable('actual_run_time_length')[0];
-  let samplingInterval;
+  const delayTime = (
+    reader.getDataVariable('actual_delay_time') as number[]
+  )[0]!;
+  const runtimeLength = (
+    reader.getDataVariable('actual_run_time_length') as number[]
+  )[0]!;
+  let samplingInterval: number;
   if (reader.dataVariableExists('actual_sampling_interval')) {
-    samplingInterval = reader.getDataVariable('actual_sampling_interval')[0];
+    samplingInterval = (
+      reader.getDataVariable('actual_sampling_interval') as number[]
+    )[0]!;
 
     if (
       Math.abs(delayTime + samplingInterval * numberPoints - runtimeLength) > 3
@@ -73,7 +88,7 @@ export function agilentHPLC(reader) {
     samplingInterval = (runtimeLength - delayTime) / numberPoints;
   }
 
-  let times = [];
+  const times: number[] = [];
   let time = delayTime;
   for (let i = 0; i < numberPoints; i++) {
     times.push(time);

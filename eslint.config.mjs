@@ -1,14 +1,10 @@
-import cheminfo from 'eslint-config-cheminfo';
+import cheminfo from 'eslint-config-cheminfo-typescript';
 
 export default [
   ...cheminfo,
   {
-    languageOptions: {
-      globals: {
-        __dirname: false,
-      },
-    },
     rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off',
       camelcase: 'off',
     },
   },

@@ -2,36 +2,37 @@
   "name": "netcdf-gcms",
   "version": "3.0.0",
   "description": "Parser from NetCDF files to JSON usable for GC/MS",
-  "main": "lib/index.js",
-  "module": "src/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
   "files": [
     "lib",
     "src"
   ],
   "scripts": {
-    "build": "cheminfo-build  --entry src/index.js --root NetCDFgcms",
+    "build": "npm run tsc && cheminfo-build --entry lib/index.js --root NetCDFgcms",
+    "check-types": "tsc --noEmit",
+    "clean": "rimraf lib",
     "eslint": "eslint src",
     "eslint-fix": "npm run eslint -- --fix",
-    "prepack": "rollup -c",
+    "prepack": "npm run tsc",
     "prettier": "prettier --check src",
     "prettier-write": "prettier --write src",
-    "test": "npm run test-only && npm run eslint && npm run prettier",
-    "test-only": "vitest --coverage"
+    "test": "npm run test-only && npm run check-types && npm run eslint && npm run prettier",
+    "test-only": "vitest run --coverage",
+    "tsc": "npm run clean && tsc -p tsconfig.build.json"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/cheminfo/netcdf-gcms.git"
   },
-  "prettier": {
-    "arrowParens": "always",
-    "semi": true,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "all"
-  },
   "keywords": [
     "cheminfo",
-    "chemestry",
+    "chemistry",
     "netcdf",
     "gcms",
     "chromatography"
@@ -42,15 +43,19 @@
     "url": "https://github.com/cheminfo/netcdf-gcms/issues"
   },
   "homepage": "https://github.com/cheminfo/netcdf-gcms#readme",
-  "devDependencies": {
-    "@vitest/coverage-v8": "^2.1.5",
-    "cheminfo-build": "^1.2.0",
-    "eslint": "^9.15.0",
-    "eslint-config-cheminfo": "^12.0.1",
-    "prettier": "^3.3.3",
-    "vitest": "^2.1.5"
-  },
   "dependencies": {
     "netcdfjs": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@zakodium/tsconfig": "^1.0.2",
+    "cheminfo-build": "^1.3.2",
+    "eslint": "^9.15.0",
+    "eslint-config-cheminfo-typescript": "^21.1.0",
+    "prettier": "^3.8.1",
+    "rimraf": "^6.1.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   }
 }

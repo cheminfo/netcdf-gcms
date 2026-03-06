@@ -60,25 +60,33 @@
       instrument_comments            = [" "," "," "," "," "," "," "," "," "," "," "," "," (length: 32)
 */
 
-export function agilentGCMS(reader) {
-  const time = reader.getDataVariable('scan_acquisition_time');
-  const tic = reader.getDataVariable('total_intensity');
+import type { NetCDFReader } from 'netcdfjs';
 
-  // variables to get the mass-intensity values
-  const pointCount = reader.getDataVariable('point_count');
-  const massValues = reader.getDataVariable('mass_values');
-  const intensityValues = reader.getDataVariable('intensity_values');
+import type { GCMSResult } from './types.ts';
 
-  let ms = new Array(pointCount.length);
+/**
+ * Parses an Agilent GC/MS NetCDF file and returns times with TIC and mass spectra.
+ * @param reader - NetCDF reader instance
+ * @returns Parsed times and series data
+ */
+export function agilentGCMS(reader: NetCDFReader): GCMSResult {
+  const time = reader.getDataVariable('scan_acquisition_time') as number[];
+  const tic = reader.getDataVariable('total_intensity') as number[];
+
+  const pointCount = reader.getDataVariable('point_count') as number[];
+  const massValues = reader.getDataVariable('mass_values') as number[];
+  const intensityValues = reader.getDataVariable(
+    'intensity_values',
+  ) as number[];
+
+  const ms: Array<[number[], number[]]> = [];
   let index = 0;
-  for (let i = 0; i < ms.length; i++) {
-    let size = pointCount[i];
-    ms[i] = [new Array(size), new Array(size)];
-
-    for (let j = 0; j < size; j++) {
-      ms[i][0][j] = massValues[index];
-      ms[i][1][j] = intensityValues[index++];
-    }
+  for (const count of pointCount) {
+    ms.push([
+      massValues.slice(index, index + count),
+      intensityValues.slice(index, index + count),
+    ]);
+    index += count;
   }
 
   return {

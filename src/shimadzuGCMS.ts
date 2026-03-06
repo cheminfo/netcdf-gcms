@@ -69,26 +69,32 @@
       instrument_comments            = [" "," "," "," "," "," "," "," "," "," "," "," "," (length: 32)
 */
 
-export function shimadzuGCMS(reader) {
-  const time = reader.getDataVariable('scan_acquisition_time');
-  const tic = reader.getDataVariable('total_intensity');
+import type { NetCDFReader } from 'netcdfjs';
 
-  // variables to get the mass-intensity values
-  let scanIndex = reader.getDataVariable('scan_index');
-  const massValues = reader.getDataVariable('mass_values');
-  const intensityValues = reader.getDataVariable('intensity_values');
+import type { GCMSResult } from './types.ts';
+
+/**
+ * Parses a Shimadzu GC/MS NetCDF file and returns times with TIC and mass spectra.
+ * @param reader - NetCDF reader instance
+ * @returns Parsed times and series data
+ */
+export function shimadzuGCMS(reader: NetCDFReader): GCMSResult {
+  const time = reader.getDataVariable('scan_acquisition_time') as number[];
+  const tic = reader.getDataVariable('total_intensity') as number[];
+
+  const scanIndex = reader.getDataVariable('scan_index') as number[];
+  const massValues = reader.getDataVariable('mass_values') as number[];
+  const intensityValues = reader.getDataVariable(
+    'intensity_values',
+  ) as number[];
   scanIndex.push(massValues.length);
 
-  let ms = new Array(time.length);
+  const ms: Array<[number[], number[]]> = [];
   let index = 0;
-  for (let i = 0; i < ms.length; i++) {
-    let size = scanIndex[i + 1] - scanIndex[i];
-    ms[i] = [new Array(size), new Array(size)];
-
-    for (let j = 0; j < size; j++) {
-      ms[i][0][j] = massValues[index];
-      ms[i][1][j] = intensityValues[index++];
-    }
+  for (const end of scanIndex.slice(1)) {
+    const start = index;
+    index = end;
+    ms.push([massValues.slice(start, end), intensityValues.slice(start, end)]);
   }
 
   return {
